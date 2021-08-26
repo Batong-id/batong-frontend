@@ -16,7 +16,7 @@
   "lint-staged": {
     "*.{js,jsx}": [
       "eslint '*/**/*.{js,jsx}' --fix",
-      "prettier --write ."
+      "prettier --write '*/**/*.{js,jsx}'"
     ]
   },
   "dependencies": {
