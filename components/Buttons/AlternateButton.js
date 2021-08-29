@@ -3,7 +3,7 @@ import { Button } from '@chakra-ui/button';
 export const AlternateButton = ({ children, ...properties }) => (
   <Button
     bg="neutral.white"
-    borderRadius="100px"
+    borderRadius="0.75rem"
     color="primary.brown1"
     border="1px"
     fontWeight="400"
