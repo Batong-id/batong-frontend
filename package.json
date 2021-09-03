@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint '*/**/*.{js,jsx}' --quiet --fix && prettier --write ."
+    "lint": "eslint '*/**/*.{js,jsx}' --quiet --fix && prettier --write --loglevel silent '*/**/*.{js,jsx}'"
   },
   "husky": {
     "hooks": {
@@ -16,7 +16,7 @@
   "lint-staged": {
     "*.{js,jsx}": [
       "eslint '*/**/*.{js,jsx}' --fix",
-      "prettier --write '*/**/*.{js,jsx}'"
+      "prettier --write --loglevel silent '*/**/*.{js,jsx}'"
     ]
   },
   "dependencies": {
