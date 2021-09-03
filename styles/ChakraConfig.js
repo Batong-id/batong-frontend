@@ -40,6 +40,7 @@ export const fontSizes = {
 
 export const colors = {
   primary: {
+    batong: '#41321E',
     brown1: '#BF9A69',
     brown2: '#BFA27C',
     lightTomatoScheme: {

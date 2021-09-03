@@ -4,10 +4,13 @@ import {
   SecondaryButton
 } from '../components/Buttons';
 import Card from '../components/Card';
+import Navbar from '../components/Layout/Navbar';
 
 function Example() {
   return (
     <>
+      <Navbar />
+
       <PrimaryButton>Primary Button</PrimaryButton>
       <SecondaryButton>Secondary Button</SecondaryButton>
       <AlternateButton>Alternate Button</AlternateButton>

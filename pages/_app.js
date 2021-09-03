@@ -1,7 +1,8 @@
 import '../styles/globals.css';
 import '@fontsource/lora';
-import '@fontsource/lato';
-import '@fontsource/playfair-display';
+import '@fontsource/lato/400.css';
+import '@fontsource/lato/700.css';
+import '@fontsource/playfair-display/900.css';
 
 import { ChakraProvider } from '@chakra-ui/react';
 
