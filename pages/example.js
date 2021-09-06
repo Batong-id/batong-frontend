@@ -4,6 +4,7 @@ import {
   SecondaryButton
 } from '../components/Buttons';
 import Card from '../components/Card';
+import Footer from '../components/Layout/Footer';
 import Navbar from '../components/Layout/Navbar';
 
 function Example() {
@@ -16,6 +17,8 @@ function Example() {
       <AlternateButton>Alternate Button</AlternateButton>
 
       <Card p="1rem">This is Card</Card>
+
+      <Footer />
     </>
   );
 }
