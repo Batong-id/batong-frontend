@@ -5,9 +5,9 @@ body,
 body > div:first-child,
 div#__next,
 div#__next > div {
-    min-height: 100%;
+  min-height: 100%;
 }
 
 body {
-    font-family: 'Lora', serif;
+  font-family: 'Lora', serif;
 }
