@@ -34,7 +34,7 @@ const SocialButton = ({ children, label, href }) => {
   );
 };
 
-export default function SmallCentered() {
+function Footer() {
   return (
     <Box bg="primary.brown1" color="neutral.white" py="8">
       <Container
@@ -103,3 +103,5 @@ export default function SmallCentered() {
     </Box>
   );
 }
+
+export default Footer;
