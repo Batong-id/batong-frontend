@@ -14,7 +14,7 @@ const Landing = () => {
       backgroundColor="FCFCFC"
     >
       <Flex flexDir="row" justifyContent="center">
-        <Image mt="-250px" src="/images/img-landing.svg" />
+        <Image mt="-250px" src="/images/img-landing.svg" position="relative" />
         <Flex
           w={{ lg: '200px' }}
           flexDir="column"
@@ -56,10 +56,46 @@ const Landing = () => {
             Belanja Sekarang
           </PrimaryButton>
         </Flex>
-        <Image pt="150px" src="/images/img-landing-2.svg" />
+        <Image pt="150px" src="/images/img-landing-2.svg" position="relative" />
       </Flex>
 
-      <Box minW="100vw" minH="765px"></Box>
+      <Flex minW="100vw" minH="765px" flexDir="column" mt="-200px" px="100px">
+        <Text
+          fontFamily="The Castle Elizah"
+          fontWeight="normal"
+          lineHeight="80px"
+          fontSize="64px"
+          mb="20px"
+        >
+          Sejarah
+        </Text>
+
+        <Flex flexDir="row">
+          <Text
+            fontFamily="Lato"
+            fontSize="24px"
+            fontWeight="light"
+            textAlign="justify"
+            maxW={{ lg: '600px' }}
+          >
+            <Text style={{ textIndent: 50 }}>
+              Batik Sari Kenongo lahir di Desa Kenongo pada tahun 1997, sebagai
+              hasil karya kreasi dari Painah. Motif utama dari batik ini adalah
+              Bunga Sirih Sunduk Kentang.
+            </Text>
+            <br />
+            <Text style={{ textIndent: 50 }}>
+              Batik Sari Kenongo merupakan nama batik yang motifnya selalu
+              mengikuti kebutuhan penggunanya, sehingga bisa menerima permintaan
+              penggabungan motif atau inovasi produk. Batik Sari Kenongo juga
+              selalu mengedepankan kualitas seperti bahan kain dan ketahanan
+              pewarna alami yang digunakan.
+            </Text>
+          </Text>
+
+          <Image ml="40px" mr="-40px" src="/images/img-sejarah.svg"></Image>
+        </Flex>
+      </Flex>
     </Flex>
   );
 };
