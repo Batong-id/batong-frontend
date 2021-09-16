@@ -3,6 +3,8 @@ import { Flex } from '@chakra-ui/layout';
 import { Box, Text } from '@chakra-ui/react';
 
 import { PrimaryButton } from '../../Buttons';
+import BatongCarousel from '../../Carousel';
+import Subheading from '../../Title/Subheading';
 
 const Landing = () => {
   return (
@@ -60,15 +62,7 @@ const Landing = () => {
       </Flex>
 
       <Flex minW="100vw" minH="765px" flexDir="column" mt="-200px" px="100px">
-        <Text
-          fontFamily="theCastleElizah"
-          fontWeight="normal"
-          lineHeight="80px"
-          fontSize="64px"
-          mb="20px"
-        >
-          Sejarah
-        </Text>
+        <Subheading>Sejarah</Subheading>
 
         <Flex flexDir="row">
           <Text
@@ -95,6 +89,47 @@ const Landing = () => {
 
           <Image ml="40px" mr="-40px" src="/images/img-sejarah.svg"></Image>
         </Flex>
+      </Flex>
+      <Flex mt="-150px" mb="100px" flexDir="column" px="100px">
+        <Subheading>Klien Kami</Subheading>
+        <Text
+          fontFamily="Lato"
+          fontSize="24px"
+          fontWeight="light"
+          textAlign="justify"
+        >
+          Mereka yang telah menggunakan jasa dan produk Batik Sari Kenongo
+        </Text>
+        <BatongCarousel />
+      </Flex>
+
+      <Flex mb="100px" flexDir="column" px="100px">
+        <Subheading>Galeri</Subheading>
+        <Text
+          fontFamily="Lato"
+          fontSize="24px"
+          fontWeight="light"
+          textAlign="justify"
+        >
+          Dokumentasi sejak awal berdirinya Batik Sari Kenongo dan Pemuda di
+          Desa Kenongo
+        </Text>
+
+        <BatongCarousel />
+      </Flex>
+
+      <Flex mb="100px" flexDir="column" px="100px">
+        <Subheading>Linimasa</Subheading>
+        <Text
+          fontFamily="Lato"
+          fontSize="24px"
+          fontWeight="light"
+          textAlign="justify"
+        >
+          Temukan berita dan informasi terkini dari kebudayaan batik di
+          Indonesia
+        </Text>
+        <BatongCarousel />
       </Flex>
     </Flex>
   );
