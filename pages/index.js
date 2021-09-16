@@ -1,5 +1,5 @@
-function Home() {
-  return <>Hello!</>;
-}
+import Landing from '../components/Container/Landing';
 
-export default Home;
+export default function Home() {
+  return <Landing />;
+}
