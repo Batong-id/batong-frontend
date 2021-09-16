@@ -26,7 +26,8 @@ const breakpoints = createBreakpoints({
 export const fonts = {
   playfairDisplay: 'Playfair Display',
   lora: 'Lora',
-  lato: 'Lato'
+  lato: 'Lato',
+  theCastleElizah: 'The Castle Elizah'
 };
 
 export const fontSizes = {
