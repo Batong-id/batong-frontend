@@ -61,7 +61,7 @@ const Landing = () => {
 
       <Flex minW="100vw" minH="765px" flexDir="column" mt="-200px" px="100px">
         <Text
-          fontFamily="The Castle Elizah"
+          fontFamily="theCastleElizah"
           fontWeight="normal"
           lineHeight="80px"
           fontSize="64px"
