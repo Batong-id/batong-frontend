@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/layout';
 import React, { useState } from 'react';
 import Carousel from 'react-elastic-carousel';
 
-import CarouselItem from '../Carousel/Item';
+import CarouselItem from '../Carousel/item';
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
