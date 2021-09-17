@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/layout';
 import React, { useState } from 'react';
 import Carousel from 'react-elastic-carousel';
 
-import Item from './Item';
+import CarouselItem from '../Carousel/Item';
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
@@ -13,17 +13,6 @@ const breakPoints = [
 
 function BatongCarousel() {
   const [items] = useState([1, 2, 3, 4, 5, 6, 7, 8]);
-
-  // const addItem = () => {
-  //     const nextItem = Math.max(1, items.length + 1);
-  //     setItems([...items, nextItem]);
-  // };
-
-  // const removeItem = () => {
-  //     const endRange = Math.max(0, items.length - 1);
-  //     setItems(items.slice(0, endRange));
-  // };
-
   return (
     <Box>
       <Carousel
@@ -35,7 +24,7 @@ function BatongCarousel() {
         showArrows={false}
       >
         {items.map((item) => (
-          <Item key={item}>{item}</Item>
+          <CarouselItem key={item}>{item}</CarouselItem>
         ))}
       </Carousel>
     </Box>

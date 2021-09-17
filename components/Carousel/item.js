@@ -1,13 +1,16 @@
-import styled from 'styled-components';
+import { Flex } from '@chakra-ui/layout';
 
-export default styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 250px;
-  width: 100%;
-  background-color: #c4c4c4;
-  color: #c4c4c4;
-  margin: 15px;
-  font-size: 4em;
-`;
+const CarouselItem = () => {
+  return (
+    <Flex
+      justifyContent="center"
+      alignItems="center"
+      height={{ lg: '250px' }}
+      width="100vw"
+      backgroundColor="#C4C4C4"
+      color="#c4c4c4"
+      margin="15px"
+    ></Flex>
+  );
+};
+export default CarouselItem;
