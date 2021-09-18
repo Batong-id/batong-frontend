@@ -12,7 +12,7 @@ const auth = {
     }
 
     if (typeof window !== 'undefined') {
-      localStorage.fooqi = JSON.stringify(user);
+      localStorage.batonk = JSON.stringify(user);
     }
 
     return Promise.resolve(true);
@@ -22,7 +22,7 @@ const auth = {
    * Logs the current user out
    */
   logout() {
-    localStorage.removeItem('fooqi');
+    localStorage.removeItem('batonk');
     Reflect.deleteProperty(axios.defaults.headers.common, 'Authorization');
   },
 
@@ -33,10 +33,10 @@ const auth = {
     let isUserExist;
 
     if (typeof window !== 'undefined') {
-      isUserExist = Boolean(localStorage.fooqi);
+      isUserExist = Boolean(localStorage.batonk);
     }
 
-    return isUserExist ? JSON.parse(localStorage.fooqi) : false;
+    return isUserExist ? JSON.parse(localStorage.batonk) : false;
   }
 };
 
