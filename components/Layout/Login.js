@@ -29,7 +29,7 @@ const Login = ({ onClose }) => {
       setFalsePwd(
         error.message === 'Network Error'
           ? 'Jaringan Bermasalah'
-          : 'Username/Password Salah 😟'
+          : 'Email/Password Salah 😟'
       );
       setTimeout(() => {
         setFalsePwd();
@@ -42,11 +42,11 @@ const Login = ({ onClose }) => {
       <InputText
         mb="1rem"
         errors={errors}
-        label="Username"
-        name="username"
+        label="Email"
+        name="email"
         register={register}
         validator={{
-          required: 'Username tidak boleh kosong'
+          required: 'Email tidak boleh kosong'
         }}
       />
       <InputPassword
