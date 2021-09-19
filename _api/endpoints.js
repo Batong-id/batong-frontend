@@ -3,13 +3,15 @@ import config from '_api/config';
 import axios from 'axios';
 
 axios.defaults.baseURL = config.API_BASE_URL;
-export const profile = '/auth/profile/';
-export const ssoAuthentication = '/auth/loginSSO/';
 export const login = '/auth/login/';
 export const regist = '/auth/register/';
-export const urlRefreshToken = '/auth/token/refresh/';
+export const forgotPassword = '/auth/forgotPassword/';
+export const resetPassword = (token) => `/auth/resetPassword/${token}`;
+export const user = '/user/';
+export const createCategory = '/category/create/';
 
-export const exportRecap = '/mentoring/rekap/';
+// export const urlRefreshToken = '/auth/token/refresh/';
+
 export const overview = (grupId) =>
   `/mentoring/grup/${grupId ? `${grupId}/` : 'mentor/'}`;
 export const allPertemuan = (grupId) =>

@@ -51,8 +51,8 @@ axios.interceptors.response.use(
       typeof window !== 'undefined'
     ) {
       originalRequest._retry = true;
-      const { name, role, refresh, isSSO } = JSON.parse(
-        localStorage.getItem('fooqi')
+      const { name, role, refresh } = JSON.parse(
+        localStorage.getItem('batonk')
       );
       const refreshToken = refresh;
 
@@ -61,14 +61,13 @@ axios.interceptors.response.use(
           refresh: refreshToken
         });
         const storageData = {
-          isSSO: isSSO,
           name: name,
           role: role,
           token: response.data.access,
           refresh: response.data.refresh
         };
 
-        localStorage.setItem('fooqi', JSON.stringify(storageData));
+        localStorage.setItem('batonk', JSON.stringify(storageData));
 
         axios.defaults.headers['Authorization'] =
           'Bearer ' + response.data.access;
@@ -87,15 +86,14 @@ axios.interceptors.response.use(
 
 const config = {
   base: {
-    DOMAIN: url,
-    SSO_UI_URL: 'https://sso.ui.ac.id/cas2'
+    DOMAIN: url
   },
   production: {
-    API_BASE_URL: 'https://fuki.cs.ui.ac.id/api',
+    API_BASE_URL: '',
     BASE_URL: '/'
   },
   development: {
-    API_BASE_URL: 'http://localhost:8000/api',
+    API_BASE_URL: 'http://localhost:5000/api/v1',
     BASE_URL: '/'
   }
 };
