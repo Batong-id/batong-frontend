@@ -1,58 +1,43 @@
 import persistAuth from '_api/auth';
-import { ssoAuthentication } from '_api/endpoints';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 
-export const login = createAsyncThunk(
-  'auth/login',
-  async (arguments_, { rejectWithValue }) => {
-    try {
-      return axios.post(ssoAuthentication, arguments_);
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
+export const login = createAsyncThunk('auth/login');
 
-const { token, refresh, name, role, isSSO } = persistAuth.loggedIn();
+const { token, refresh, username, role } = persistAuth.loggedIn();
 
 const authSlice = createSlice({
-  name: 'auth',
+  username: 'auth',
   initialState: {
     token: token ?? '',
     refresh: refresh ?? '',
-    name: name ?? '',
-    role: role ?? '',
-    isSSO: isSSO ?? ''
+    username: username ?? '',
+    role: role ?? ''
   },
   reducers: {
     logout: (state) => {
       state.token = '';
       state.refresh = '';
-      state.name = '';
+      state.username = '';
       state.role = '';
-      state.isSSO = '';
       persistAuth.logout();
     },
     loginUser: (state, action) => {
-      const { token, name, refresh, role, isSSO = false } = action.payload;
+      const { token, username, refresh, role } = action.payload;
       state.token = token;
       state.refresh = refresh;
-      state.name = name;
+      state.username = username;
       state.role = role;
-      state.isSSO = isSSO;
-      persistAuth.login({ token, refresh, name, role, isSSO });
+      persistAuth.login({ token, refresh, username, role });
     }
   },
   extraReducers: {
     [login.fulfilled]: (state, action) => {
-      const { token, name, refresh, role, isSSO = true } = action.payload.data;
+      const { token, username, refresh, role } = action.payload.data;
       state.token = token;
       state.refresh = refresh;
-      state.name = name;
+      state.username = username;
       state.role = role;
-      state.isSSO = isSSO;
-      persistAuth.login({ token, refresh, name, role, isSSO });
+      persistAuth.login({ token, refresh, username, role });
     }
   }
 });
