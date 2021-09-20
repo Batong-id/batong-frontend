@@ -5,7 +5,7 @@ const Subheading = ({ children, ...properties }) => {
       fontFamily="theCastleElizah"
       fontWeight="normal"
       lineHeight="80px"
-      fontSize="64px"
+      fontSize={{ lg: '64px', md: '52px', sm: '44px' }}
       mb="20px"
       {...properties}
     >

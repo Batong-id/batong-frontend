@@ -16,11 +16,16 @@ const Landing = () => {
       backgroundColor="FCFCFC"
     >
       <Flex flexDir="row" justifyContent="center">
-        <Image mt="-250px" src="/images/img-landing.svg" position="relative" />
+        <Image
+          mt={{ lg: '-250px', md: '-70px', sm: '-50px' }}
+          src="/images/img-landing.svg"
+          position={{ lg: 'relative', sm: 'absolute' }}
+          ml={{ lg: '0px', md: '-500px', sm: '-200px' }}
+        />
         <Flex
           w={{ lg: '200px' }}
           flexDir="column"
-          mt={{ lg: '124px' }}
+          mt={{ lg: '124px', md: '100px', sm: '120px' }}
           alignItems="center"
         >
           <Box>
@@ -28,10 +33,15 @@ const Landing = () => {
               fontFamily="The Castle Elizah"
               fontWeight="normal"
               textAlign="center"
-              lineHeight="80px"
+              mt={{ md: '50px', sm: '40px' }}
+              lineHeight={{ lg: '80px', md: '60px', sm: '60px' }}
             >
-              <Text fontSize={{ lg: '80px' }}>Batik Sari</Text>
-              <Text fontSize={{ lg: '144px' }}>Kenongo</Text>
+              <Text fontSize={{ lg: '80px', md: '50px', sm: '50px' }}>
+                Batik Sari
+              </Text>
+              <Text fontSize={{ lg: '144px', md: '80px', sm: '80px' }}>
+                Kenongo
+              </Text>
             </Text>
           </Box>
 
@@ -39,9 +49,9 @@ const Landing = () => {
             <Text
               textAlign="center"
               fontFamily="lato"
-              fontSize="24px"
-              w="700px"
-              mt="20px"
+              fontSize={{ lg: '24px', md: '21px', sm: '18px' }}
+              w={{ lg: '700px', md: '500px', sm: '300px' }}
+              mt={{ lg: '20px', md: '24px', sm: '24px' }}
             >
               Sebuah hasil karya kebudayaan asli Desa Kenongo yang berkualitas,
               inovatif, dan berkelanjutan
@@ -58,19 +68,30 @@ const Landing = () => {
             Belanja Sekarang
           </PrimaryButton>
         </Flex>
-        <Image pt="150px" src="/images/img-landing-2.svg" position="relative" />
+        <Image
+          pt={{ lg: '150px', md: '150px', sm: '300px' }}
+          mr={{ lg: '0px', md: '-600px', sm: '-300px' }}
+          src="/images/img-landing-2.svg"
+          position={{ lg: 'relative', sm: 'absolute' }}
+        />
       </Flex>
 
-      <Flex minW="100vw" minH="765px" flexDir="column" mt="-200px" px="100px">
+      <Flex
+        minW="100vw"
+        minH="765px"
+        flexDir="column"
+        mt={{ lg: '-200px', md: '200px', sm: '180px' }}
+        px={{ lg: '100px', md: '70px', sm: '50px' }}
+      >
         <Subheading>Sejarah</Subheading>
 
         <Flex flexDir="row">
           <Text
             fontFamily="Lato"
-            fontSize="24px"
+            fontSize={{ lg: '24px', md: '21px', sm: '18px' }}
             fontWeight="light"
             textAlign="justify"
-            maxW={{ lg: '600px' }}
+            maxW={{ lg: '600px', md: '400px' }}
           >
             <Text style={{ textIndent: 50 }}>
               Batik Sari Kenongo lahir di Desa Kenongo pada tahun 1997, sebagai
