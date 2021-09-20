@@ -85,13 +85,16 @@ const Landing = () => {
       >
         <Subheading>Sejarah</Subheading>
 
-        <Flex flexDir="row">
+        <Flex
+          flexDir={{ lg: 'row', md: 'column-reverse', sm: 'column-reverse' }}
+        >
           <Text
             fontFamily="Lato"
             fontSize={{ lg: '24px', md: '21px', sm: '18px' }}
             fontWeight="light"
             textAlign="justify"
-            maxW={{ lg: '600px', md: '400px' }}
+            maxW={{ lg: '600px', md: '700px', sm: '400px' }}
+            lineHeight="48px"
           >
             <Text style={{ textIndent: 50 }}>
               Batik Sari Kenongo lahir di Desa Kenongo pada tahun 1997, sebagai
@@ -108,10 +111,19 @@ const Landing = () => {
             </Text>
           </Text>
 
-          <Image ml="40px" mr="-40px" src="/images/img-sejarah.svg"></Image>
+          <Image
+            ml={{ lg: '40px' }}
+            mr={{ lg: '-40px' }}
+            src="/images/img-sejarah.svg"
+          ></Image>
         </Flex>
       </Flex>
-      <Flex mt="-150px" mb="100px" flexDir="column" px="100px">
+      <Flex
+        mt={{ md: '40px', sm: '40px' }}
+        mb="100px"
+        flexDir="column"
+        px={{ lg: '100px', md: '70px', sm: '50px' }}
+      >
         <Subheading>Klien Kami</Subheading>
         <Text
           fontFamily="Lato"
@@ -124,7 +136,11 @@ const Landing = () => {
         <BatongCarousel />
       </Flex>
 
-      <Flex mb="100px" flexDir="column" px="100px">
+      <Flex
+        mb="100px"
+        flexDir="column"
+        px={{ lg: '100px', md: '70px', sm: '50px' }}
+      >
         <Subheading>Galeri</Subheading>
         <Text
           fontFamily="Lato"
@@ -139,7 +155,11 @@ const Landing = () => {
         <BatongCarousel />
       </Flex>
 
-      <Flex mb="100px" flexDir="column" px="100px">
+      <Flex
+        mb="100px"
+        flexDir="column"
+        px={{ lg: '100px', md: '70px', sm: '50px' }}
+      >
         <Subheading>Linimasa</Subheading>
         <Text
           fontFamily="Lato"

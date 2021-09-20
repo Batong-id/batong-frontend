@@ -15,7 +15,7 @@ const styles = {
 };
 
 const breakpoints = createBreakpoints({
-  sm: '376px',
+  sm: '375px',
   semiMd: '480px',
   md: '754px',
   lg: '944px',
