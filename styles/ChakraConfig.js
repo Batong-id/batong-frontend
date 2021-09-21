@@ -5,7 +5,7 @@ const styles = {
   global: {
     // styles for the `body`
     body: {
-      fontFamily: 'Lora'
+      fontFamily: 'Lato'
     },
     '*': {
       margin: 0,
