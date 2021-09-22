@@ -8,7 +8,7 @@ export const paddingContainer = { base: '1rem', md: '2.5rem', lg: '100px' };
 const Layout = ({ children }) => {
   return (
     <>
-      <Box minWidth="100%" h="100%" fontFamily="barlow" overflow="hidden">
+      <Box minWidth="100%" h="100%" overflow="hidden">
         <Navbar />
         <Box {...styleContainer}>
           <Box
