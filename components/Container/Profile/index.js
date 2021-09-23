@@ -22,7 +22,7 @@ const Profile = () => {
       <Grid
         mt="100px"
         h="200px"
-        templateRows="repeat(3, 1fr)"
+        templateRows="repeat(2, 1fr)"
         templateColumns="repeat(5, 1fr)"
         gap={4}
       >
@@ -39,9 +39,9 @@ const Profile = () => {
         <GridItem colSpan={4}>
           <ProfilTitle>Pesananmu</ProfilTitle>
         </GridItem>
-        <GridItem colSpan={4} mt={{ lg: '-40px' }}>
+        <GridItem colSpan={4}>
           <Card
-            w={{ lg: '780px' }}
+            w={{ lg: '65vw' }}
             h={{ lg: '60px' }}
             display="flex"
             flexDir="row"

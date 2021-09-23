@@ -14,7 +14,7 @@ import Card from '../../Card';
 
 const OrderCard = () => {
   return (
-    <Card w={{ lg: '780px' }} h={{ lg: '270px' }} mt={{ lg: '-40px' }}>
+    <Card w={{ lg: '65vw' }} h={{ lg: '270px' }} mt={{ lg: '20px' }}>
       <Grid
         templateRows="repeat(1, 1fr)"
         templateColumns="repeat(6, 1fr)"
