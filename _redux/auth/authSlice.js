@@ -1,12 +1,13 @@
-import persistAuth from '_api/auth';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
+import persistAuth from '../../_api/auth';
 
 export const login = createAsyncThunk('auth/login');
 
 const { token, refresh, username, role } = persistAuth.loggedIn();
 
 const authSlice = createSlice({
-  username: 'auth',
+  name: 'auth',
   initialState: {
     token: token ?? '',
     refresh: refresh ?? '',

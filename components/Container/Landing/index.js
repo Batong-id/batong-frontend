@@ -15,7 +15,7 @@ const Landing = () => {
       minH="765px"
       backgroundColor="FCFCFC"
     >
-      <Flex flexDir="row" justifyContent="center">
+      <Flex flexDir="row" justifyContent="center" mb={{ lg: '40px' }}>
         <Image
           mt={{ lg: '-250px', md: '-70px', sm: '-50px' }}
           src="/images/img-landing.svg"

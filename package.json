@@ -27,6 +27,7 @@
     "@fontsource/lato": "^4.5.0",
     "@fontsource/lora": "^4.5.0",
     "@fontsource/playfair-display": "^4.5.0",
+    "@reduxjs/toolkit": "^1.6.1",
     "axios": "^0.21.1",
     "framer-motion": "^4",
     "next": "11.1.0",

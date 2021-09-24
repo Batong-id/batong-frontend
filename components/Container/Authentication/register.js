@@ -1,49 +1,42 @@
-import { Button } from '@chakra-ui/button';
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { Image } from '@chakra-ui/image';
-import { Input, InputGroup, InputRightElement } from '@chakra-ui/input';
-import { Box, Circle, Flex, Text, VStack } from '@chakra-ui/layout';
-import { FormControl, FormLabel } from '@chakra-ui/react';
+import { Box, Circle, Flex, Text } from '@chakra-ui/layout';
 import { Link } from '@chakra-ui/react';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { redirect } from '../../../_api/helper';
 import { authApi } from '../../../_api/service';
+import { InputPassword, InputText } from '../../../components/Forms';
 import { REGEX_EMAIL } from '../../../constants/regex';
-import { toastErrorMessage } from '../../../utils/functions';
 import { PrimaryButton } from '../../Buttons';
+import InputSelect from '../../Forms/Select';
 import { ErrorToast, SuccessToast } from '../../Toast';
+
+function onSubmit(values) {
+  return new Promise((resolve) => {
+    try {
+      const data = authApi.register(values);
+      SuccessToast(
+        `Hai, ${data.firstName} 👋`,
+        `Terdaftar sebagai ${data.role}`
+      );
+      redirect('/authentication/login');
+    } catch (error) {
+      if (error.message.includes('400')) {
+        ErrorToast(`email sudah terpakai 😟`);
+      }
+    }
+    resolve();
+  });
+}
 
 const Register = () => {
   const {
+    handleSubmit,
     register,
-    getValues,
-    trigger,
-    formState: { errors }
+    formState: { errors, isSubmitting }
   } = useForm();
-  const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
 
-  const validate = {
-    required: { value: true, message: 'Silakan isi seluruh field' }
-  };
-
-  const [isLoading, setIsLoading] = useState(false);
-  const onSubmit = async (error) => {
-    error?.preventDefault();
-
-    if (!(await trigger())) {
-      toastErrorMessage({ errors, title: 'Gagal membuat akun' });
-      return;
-    }
-
-    setIsLoading(true);
-    authApi
-      .register({ ...getValues() })
-      .then(() => SuccessToast('Akun berhasil dibuat'))
-      .catch(() => ErrorToast('Gagal membuat akun'))
-      .finally(() => setIsLoading(false));
-  };
   return (
     <Flex flexDir="row" w="100vw" h={{ lg: '100vh' }}>
       <Box>
@@ -83,77 +76,111 @@ const Register = () => {
           fontWeight="normal"
           textAlign="center"
           w={{ lg: '400px' }}
+          mb="1.5rem"
           fontSize={{ lg: '36px', md: '24px', sm: '21px' }}
         >
           Buat Akun Batong
         </Text>
 
-        <VStack
-          mt={{ lg: '20px' }}
-          spacing={5}
-          color="primary.brown1"
-          fontSize="18px"
-          fontWeight="semibold"
-          fontFamily="lato"
-          w={{ lg: '330px' }}
-        >
-          <FormControl isRequired>
-            <FormLabel>Nama Depan</FormLabel>
-            <Input {...register('firstName', { ...validate })} />
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel>Nama Belakang</FormLabel>
-            <Input {...register('lastName', { ...validate })} />
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel>Username</FormLabel>
-            <Input {...register('username', { ...validate })} />
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel>Email</FormLabel>
-            <Input
-              text="Email"
-              {...register('email', {
-                ...validate,
-                pattern: {
-                  value: REGEX_EMAIL,
-                  message: 'Email tidak valid'
-                }
-              })}
-            />
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel>Password</FormLabel>
-            <InputGroup>
-              <Input
-                type={show ? 'text' : 'password'}
-                placeholder="Masukkan password"
-                {...register('password', { ...validate })}
-              />
-              <InputRightElement>
-                <Button h="38px" fontSize="12px" onClick={handleClick}>
-                  {show ? 'Hide' : 'Show'}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel>Konfirmasi Password</FormLabel>
-            <Input
-              type={show ? 'text' : 'password'}
-              placeholder="Masukkan password"
-              {...register('password', { ...validate })}
-            />
-          </FormControl>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <InputText
+            color="primary.brown1"
+            fontWeight="bold"
+            mb="1rem"
+            errors={errors}
+            label="Nama Depan"
+            name="firstName"
+            register={register}
+            placeholder="Masukan nama depan"
+            validator={{
+              required: 'Nama depan tidak boleh kosong'
+            }}
+          />
+
+          <InputText
+            color="primary.brown1"
+            fontWeight="bold"
+            mb="1rem"
+            errors={errors}
+            label="Nama Belakang"
+            name="lastName"
+            placeholder="Masukan nama belakang"
+            register={register}
+          />
+
+          <InputText
+            color="primary.brown1"
+            fontWeight="bold"
+            mb="1rem"
+            errors={errors}
+            label="Username"
+            name="username"
+            placeholder="Masukan username kamu"
+            register={register}
+            validator={{
+              required: 'Username tidak boleh kosong',
+              minLength: {
+                value: 3,
+                message: 'minimal 3 karakter'
+              }
+            }}
+          />
+          <InputText
+            color="primary.brown1"
+            fontWeight="bold"
+            mb="1rem"
+            text="Email"
+            errors={errors}
+            label="Email"
+            name="email"
+            placeholder="Masukan email kamu"
+            register={register}
+            validator={{
+              required: 'Username tidak boleh kosong',
+              minLength: {
+                value: 3,
+                message: 'minimal 3 karakter'
+              },
+              pattern: {
+                value: REGEX_EMAIL,
+                message: 'Email tidak valid'
+              }
+            }}
+          />
+
+          <InputPassword
+            color="primary.brown1"
+            fontWeight="bold"
+            mb="2rem"
+            errors={errors}
+            label="Password"
+            name="password"
+            placeholder="Masukan password kamu"
+            register={register}
+            validator={{
+              required: 'Password tidak boleh kosong',
+              minLength: {
+                value: 8,
+                message: 'minimal 8 karakter'
+              }
+            }}
+          />
+
+          <InputSelect
+            mb="2rem"
+            label="Daftar sebagai"
+            name="role"
+            errors={errors}
+            register={register}
+          />
           <PrimaryButton
             type="submit"
             w={{ lg: '330px' }}
-            onClick={onSubmit}
-            isLoading={isLoading}
+            isLoading={isSubmitting}
           >
             Buat Akun <ArrowForwardIcon ml="10px" justifyContent="center" />
           </PrimaryButton>
-        </VStack>
+        </form>
       </Flex>
     </Flex>
   );

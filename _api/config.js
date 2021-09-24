@@ -89,12 +89,12 @@ const config = {
     DOMAIN: url
   },
   production: {
-    API_BASE_URL: '',
-    BASE_URL: '/'
+    API_BASE_URL: 'api.batong.id',
+    BASE_URL: 'batong.id'
   },
   development: {
     API_BASE_URL: 'http://localhost:5000/api/v1',
-    BASE_URL: '/'
+    BASE_URL: 'http://localhost:3000'
   }
 };
 

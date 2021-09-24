@@ -1,49 +1,53 @@
-import { Button } from '@chakra-ui/button';
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { Image } from '@chakra-ui/image';
-import { Input, InputGroup, InputRightElement } from '@chakra-ui/input';
-import { Box, Circle, Flex, Text, VStack } from '@chakra-ui/layout';
-import { FormControl, FormLabel } from '@chakra-ui/react';
+import { Box, Circle, Flex, Text } from '@chakra-ui/layout';
 import { Link } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
+import { redirect } from '../../../_api/helper';
 import { authApi } from '../../../_api/service';
-import { REGEX_EMAIL } from '../../../constants/regex';
-import { toastErrorMessage } from '../../../utils/functions';
+import { loginUser } from '../../../_redux/auth/authSlice';
+import { InputPassword, InputText } from '../../../components/Forms';
+// import { REGEX_EMAIL } from '../../../constants/regex';
 import { PrimaryButton } from '../../Buttons';
 import { ErrorToast, SuccessToast } from '../../Toast';
 
 const Login = () => {
   const {
     register,
-    getValues,
-    trigger,
-    formState: { errors }
+    handleSubmit,
+    formState: { errors, isSubmitting }
   } = useForm();
-  const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
+  const dispatch = useDispatch();
+  const [falsePwd, setFalsePwd] = useState();
 
-  const validate = {
-    required: { value: true, message: 'Silakan isi seluruh field' }
-  };
+  function onSubmit(values) {
+    return new Promise((resolve) => {
+      try {
+        const authDetail = authApi.login(values);
+        dispatch(loginUser(authDetail));
+        SuccessToast(
+          `Hi, ${authDetail.firstName} 👋`,
+          `Masuk sebagai ${authDetail.role}`
+        );
+        redirect('/');
+      } catch (error) {
+        setFalsePwd(
+          error.message === 'Network Error'
+            ? 'Jaringan Bermasalah'
+            : 'Username/Password Salah 😟'
+        );
+        setTimeout(() => {
+          setFalsePwd();
+        }, 5000);
+        ErrorToast('Gagal Login');
+      }
+      resolve();
+    });
+  }
 
-  const [isLoading, setIsLoading] = useState(false);
-  const onSubmit = async (error) => {
-    error?.preventDefault();
-
-    if (!(await trigger())) {
-      toastErrorMessage({ errors, title: 'Login Gagal' });
-      return;
-    }
-
-    setIsLoading(true);
-    authApi
-      .login({ ...getValues() })
-      .then(() => SuccessToast('Login Berhasil'))
-      .catch(() => ErrorToast('Login Gagal'))
-      .finally(() => setIsLoading(false));
-  };
   return (
     <Flex flexDir="row" w="100vw" h={{ lg: '100vh' }}>
       <Box>
@@ -83,12 +87,47 @@ const Login = () => {
           fontWeight="normal"
           textAlign="center"
           w={{ lg: '400px' }}
+          mb="1.5rem"
           fontSize={{ lg: '36px', md: '24px', sm: '21px' }}
         >
           Login Ke Batong
         </Text>
-
-        <VStack
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <InputText
+            mb="1rem"
+            errors={errors}
+            label="Email"
+            name="email"
+            register={register}
+            validator={{
+              required: 'Email tidak boleh kosong'
+            }}
+          />
+          <InputPassword
+            errors={errors}
+            label="Password"
+            name="password"
+            register={register}
+            mb="1.5rem"
+            validator={{
+              required: 'Password tidak boleh kosong'
+            }}
+          />
+          {falsePwd && (
+            <Text py=".5rem" color="red.500">
+              {falsePwd}
+            </Text>
+          )}
+          <PrimaryButton
+            type="submit"
+            w={{ lg: '330px' }}
+            isLoading={isSubmitting}
+            onClick={handleSubmit(onSubmit)}
+          >
+            Login <ArrowForwardIcon ml="10px" justifyContent="center" />
+          </PrimaryButton>
+        </form>
+        {/* <VStack
           mt={{ lg: '20px' }}
           spacing={5}
           color="primary.brown1"
@@ -101,6 +140,7 @@ const Login = () => {
             <FormLabel>Email</FormLabel>
             <Input
               text="Email"
+              errors={errors}
               {...register('email', {
                 ...validate,
                 pattern: {
@@ -115,6 +155,7 @@ const Login = () => {
             <InputGroup>
               <Input
                 type={show ? 'text' : 'password'}
+                errors={errors}
                 placeholder="Masukkan password"
                 {...register('password', { ...validate })}
               />
@@ -125,15 +166,20 @@ const Login = () => {
               </InputRightElement>
             </InputGroup>
           </FormControl>
+          {falsePwd && (
+            <Text py=".5rem" color="red.500">
+              {falsePwd}
+            </Text>
+          )}
           <PrimaryButton
             type="submit"
             w={{ lg: '330px' }}
-            onClick={onSubmit}
-            isLoading={isLoading}
+            isLoading={isSubmitting}
+            onClick={handleSubmit(onSubmit)}
           >
             Login <ArrowForwardIcon ml="10px" justifyContent="center" />
           </PrimaryButton>
-        </VStack>
+        </VStack> */}
       </Flex>
     </Flex>
   );

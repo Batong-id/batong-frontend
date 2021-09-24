@@ -44,6 +44,7 @@ export const colors = {
     batong: '#41321E',
     brown1: '#BF9A69',
     brown2: '#BFA27C',
+    grayBorder: '#E2E8F0',
     lightTomatoScheme: {
       100: '#FECACA',
       800: '#7F1D1D'
