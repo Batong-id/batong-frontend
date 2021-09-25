@@ -32,7 +32,9 @@ const Login = () => {
           `Hi, ${authDetail.firstName} 👋`,
           `Masuk sebagai ${authDetail.role}`
         );
-        redirect('/');
+        setTimeout(() => {
+          redirect('/');
+        }, 2000);
       } catch (error) {
         setFalsePwd(
           error.message === 'Network Error'
@@ -41,7 +43,7 @@ const Login = () => {
         );
         setTimeout(() => {
           setFalsePwd();
-        }, 5000);
+        }, 2000);
         ErrorToast('Gagal Login');
       }
       resolve();
@@ -89,6 +91,7 @@ const Login = () => {
           w={{ lg: '400px' }}
           mb="1.5rem"
           fontSize={{ lg: '36px', md: '24px', sm: '21px' }}
+          mt="-200px"
         >
           Login Ke Batong
         </Text>
@@ -127,59 +130,18 @@ const Login = () => {
             Login <ArrowForwardIcon ml="10px" justifyContent="center" />
           </PrimaryButton>
         </form>
-        {/* <VStack
-          mt={{ lg: '20px' }}
-          spacing={5}
-          color="primary.brown1"
-          fontSize="18px"
-          fontWeight="semibold"
-          fontFamily="lato"
-          w={{ lg: '330px' }}
-        >
-          <FormControl isRequired>
-            <FormLabel>Email</FormLabel>
-            <Input
-              text="Email"
-              errors={errors}
-              {...register('email', {
-                ...validate,
-                pattern: {
-                  value: REGEX_EMAIL,
-                  message: 'Email tidak valid'
-                }
-              })}
-            />
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel>Password</FormLabel>
-            <InputGroup>
-              <Input
-                type={show ? 'text' : 'password'}
-                errors={errors}
-                placeholder="Masukkan password"
-                {...register('password', { ...validate })}
-              />
-              <InputRightElement>
-                <Button h="38px" fontSize="12px" onClick={handleClick}>
-                  {show ? 'Hide' : 'Show'}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-          </FormControl>
-          {falsePwd && (
-            <Text py=".5rem" color="red.500">
-              {falsePwd}
-            </Text>
-          )}
-          <PrimaryButton
-            type="submit"
-            w={{ lg: '330px' }}
-            isLoading={isSubmitting}
-            onClick={handleSubmit(onSubmit)}
-          >
-            Login <ArrowForwardIcon ml="10px" justifyContent="center" />
-          </PrimaryButton>
-        </VStack> */}
+        <Box mt="20px">
+          <Text>
+            Belum memiliki akun ? Daftar{' '}
+            <Link
+              href="/authentication/register"
+              color="primary.brown1"
+              fontWeight="bold"
+            >
+              di sini
+            </Link>
+          </Text>
+        </Box>
       </Flex>
     </Flex>
   );

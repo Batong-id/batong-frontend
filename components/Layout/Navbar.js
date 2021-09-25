@@ -1,4 +1,5 @@
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
@@ -16,10 +17,15 @@ import {
   useColorModeValue,
   useDisclosure
 } from '@chakra-ui/react';
+import { useRouter } from 'next/dist/client/router';
+import { useDispatch } from 'react-redux';
+
+import { logout } from '../../_redux/auth/authSlice';
+import { SuccessToast } from '../Toast';
 
 const Links = ['BELANJA', 'LINIMASA'];
 
-const NavLink = ({ children }) => (
+const NavLink = ({ children, href }) => (
   <Link
     py="0.5rem"
     px="0.75rem"
@@ -29,25 +35,50 @@ const NavLink = ({ children }) => (
       bg: useColorModeValue('gray.200', 'gray.700')
     }}
     _focus={{ fontWeight: '700', transition: 'font-weight 0.5s' }}
-    href={'#'}
+    href={href}
     fontFamily="Lato"
   >
     {children}
   </Link>
 );
 
-const Navbar = () => {
+const Navbar = ({ loggedIn, isSeller, firstName }) => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const onLogout = () => {
+    dispatch(logout());
+    SuccessToast('Logout Berhasil', 'Kamu telah keluar dari Batong');
+    router.push('/');
+  };
+
+  const onLogin = () => {
+    router.push('/authentication/login');
+  };
+  const Home = () => {
+    router.push('/');
+  };
+
+  const onProfile = () => {
+    router.push('/profile');
+  };
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
-      <Box
-        bg="neutral.bg"
-        px="5rem"
-        py="0.5rem"
-        boxShadow="0px 8px 17px rgba(190, 190, 190, 0.25)"
-      >
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+      <Box position="fixed" top={0} zIndex="999" w="100vw">
+        <Flex
+          h="90px"
+          alignItems={'center'}
+          justifyContent={'space-between'}
+          bg="neutral.bg"
+          px="5rem"
+          py="0.5rem"
+          filter="drop-shadow(0px 5px 20px rgba(55, 84, 170, 0.25))"
+          backgroundColor="rgba(255, 255, 255, 0.699)"
+          boxShadow="rgba(46, 50, 70, 0.2) 0px 1px 10px"
+          backdropFilter="blur(8px)"
+          transition="background-color 1s ease 0s"
+        >
           <IconButton
             size={'md'}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -55,7 +86,7 @@ const Navbar = () => {
             display={{ md: 'none' }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <Box>
+          <Box as="button" onClick={Home}>
             <HStack>
               <Image
                 alt="Logo Batong"
@@ -83,6 +114,11 @@ const Navbar = () => {
           </HStack>
           <Flex alignItems={'center'}>
             <Menu>
+              {isSeller ? (
+                <Image src="images/icon-shopping-cart.svg" mr="10px" />
+              ) : (
+                ''
+              )}
               <MenuButton
                 as={Button}
                 rounded={'full'}
@@ -94,45 +130,67 @@ const Navbar = () => {
                   bg: 'gray.200'
                 }}
               >
-                <Text py="0.5rem" px="0.75rem" fontFamily="Lato">
-                  LOGIN
-                </Text>
+                <Flex
+                  flexDir="row"
+                  justifyContent="space-around"
+                  alignItems="center"
+                  bgColor="white"
+                  boxShadow="0px 4px 5px rgba(190, 190, 190, 0.25)"
+                  borderRadius="60px"
+                  w="162px"
+                  h="54px"
+                >
+                  <Image
+                    src="images/logo-batong.png"
+                    rounded={'full'}
+                    w="43px"
+                    h="43px"
+                    ml="10px"
+                  />
+                  {loggedIn ? (
+                    <>
+                      <Text fontSize="18px" fontWeight="bold" fontFamily="Lato">
+                        {firstName}
+                      </Text>
+                      <ChevronDownIcon mr="8px" w={8} h={8} />
+                    </>
+                  ) : (
+                    <>
+                      <Link
+                        to={onLogin}
+                        py="0.5rem"
+                        px="0.75rem"
+                        fontFamily="Lato"
+                      >
+                        LOGIN
+                      </Link>
+                    </>
+                  )}
+                </Flex>
               </MenuButton>
               <MenuList>
-                <MenuItem>
-                  <HStack spacing="4">
-                    <Image
-                      alt="Icon Login as Individual"
-                      src="../images/icon-individual.png"
-                      w="1.75rem"
-                    />
-                    <Text>Individual</Text>
-                  </HStack>
+                <MenuItem as="button" onClick={onProfile}>
+                  <Text>Akun Saya</Text>
                 </MenuItem>
                 <MenuItem>
-                  <HStack spacing="4">
-                    <Image
-                      alt="Icon Login as Penjual"
-                      src="../images/icon-penjual.png"
-                      w="1.75rem"
-                    />
-                    <Text>Penjual</Text>
-                  </HStack>
+                  <Text>Pesanan Saya</Text>
+                </MenuItem>
+                <MenuItem as="button" onClick={onLogout}>
+                  <Text>Logout</Text>
                 </MenuItem>
               </MenuList>
             </Menu>
           </Flex>
+          {isOpen ? (
+            <Box pb={4} display={{ md: 'none' }}>
+              <Stack as={'nav'} spacing={4}>
+                {Links.map((link) => (
+                  <NavLink key={link}>{link}</NavLink>
+                ))}
+              </Stack>
+            </Box>
+          ) : undefined}
         </Flex>
-
-        {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </Stack>
-          </Box>
-        ) : undefined}
       </Box>
     </>
   );

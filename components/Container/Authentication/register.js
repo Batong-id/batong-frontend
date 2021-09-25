@@ -2,9 +2,9 @@ import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { Image } from '@chakra-ui/image';
 import { Box, Circle, Flex, Text } from '@chakra-ui/layout';
 import { Link } from '@chakra-ui/react';
+import { useRouter } from 'next/dist/client/router';
 import { useForm } from 'react-hook-form';
 
-import { redirect } from '../../../_api/helper';
 import { authApi } from '../../../_api/service';
 import { InputPassword, InputText } from '../../../components/Forms';
 import { REGEX_EMAIL } from '../../../constants/regex';
@@ -12,30 +12,33 @@ import { PrimaryButton } from '../../Buttons';
 import InputSelect from '../../Forms/Select';
 import { ErrorToast, SuccessToast } from '../../Toast';
 
-function onSubmit(values) {
-  return new Promise((resolve) => {
-    try {
-      const data = authApi.register(values);
-      SuccessToast(
-        `Hai, ${data.firstName} 👋`,
-        `Terdaftar sebagai ${data.role}`
-      );
-      redirect('/authentication/login');
-    } catch (error) {
-      if (error.message.includes('400')) {
-        ErrorToast(`email sudah terpakai 😟`);
-      }
-    }
-    resolve();
-  });
-}
-
 const Register = () => {
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting }
   } = useForm();
+  const router = useRouter();
+
+  function onSubmit(values) {
+    return new Promise((resolve) => {
+      try {
+        const data = authApi.register(values);
+        SuccessToast(
+          `Hai, ${data.firstName} 👋`,
+          `Terdaftar sebagai ${data.role}`
+        );
+        setTimeout(() => {
+          router.push('/authentication/login');
+        }, 2000);
+      } catch (error) {
+        if (error.message.includes('400')) {
+          ErrorToast(`email sudah terpakai 😟`);
+        }
+      }
+      resolve();
+    });
+  }
 
   return (
     <Flex flexDir="row" w="100vw" h={{ lg: '100vh' }}>
@@ -77,6 +80,7 @@ const Register = () => {
           textAlign="center"
           w={{ lg: '400px' }}
           mb="1.5rem"
+          mt="-90px"
           fontSize={{ lg: '36px', md: '24px', sm: '21px' }}
         >
           Buat Akun Batong

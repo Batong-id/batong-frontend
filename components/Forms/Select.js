@@ -10,7 +10,7 @@ const InputSelect = ({
   return (
     <Select
       {...properties}
-      borderColor="primary.brown1"
+      borderColor="primary.grayBorder"
       bg="white"
       color="primary.brown1"
       _focus={{ bg: 'primary.gray50', borderColor: 'primary.brown1' }}

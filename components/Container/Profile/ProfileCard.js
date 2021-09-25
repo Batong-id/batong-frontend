@@ -1,10 +1,13 @@
 import { Image } from '@chakra-ui/image';
 import { Text } from '@chakra-ui/layout';
+import { useRouter } from 'next/dist/client/router';
 
 import { AlternateButton } from '../../Buttons';
 import Card from '../../Card';
 
 const ProfileCard = () => {
+  const router = useRouter();
+  const onEditProfile = () => router.push('/profile/editProfile');
   return (
     <Card
       display="flex"
@@ -22,7 +25,7 @@ const ProfileCard = () => {
       <Text mt={{ lg: '10px' }} fontSize="24px" fontWeight="bold">
         Batong.id
       </Text>
-      <AlternateButton mt={{ lg: '20px' }} w="240px">
+      <AlternateButton mt={{ lg: '20px' }} w="240px" onClick={onEditProfile}>
         Edit Profil
       </AlternateButton>
     </Card>

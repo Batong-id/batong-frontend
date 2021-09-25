@@ -4,7 +4,7 @@ import persistAuth from '../../_api/auth';
 
 export const login = createAsyncThunk('auth/login');
 
-const { token, refresh, username, role } = persistAuth.loggedIn();
+const { token, refresh, username, role, firstName } = persistAuth.loggedIn();
 
 const authSlice = createSlice({
   name: 'auth',
@@ -12,7 +12,8 @@ const authSlice = createSlice({
     token: token ?? '',
     refresh: refresh ?? '',
     username: username ?? '',
-    role: role ?? ''
+    role: role ?? '',
+    firstName: firstName ?? ''
   },
   reducers: {
     logout: (state) => {
@@ -20,6 +21,7 @@ const authSlice = createSlice({
       state.refresh = '';
       state.username = '';
       state.role = '';
+      state.firstName = '';
       persistAuth.logout();
     },
     loginUser: (state, action) => {
@@ -28,7 +30,8 @@ const authSlice = createSlice({
       state.refresh = refresh;
       state.username = username;
       state.role = role;
-      persistAuth.login({ token, refresh, username, role });
+      state.firstName = firstName;
+      persistAuth.login({ token, refresh, username, role, firstName });
     }
   },
   extraReducers: {
@@ -38,7 +41,8 @@ const authSlice = createSlice({
       state.refresh = refresh;
       state.username = username;
       state.role = role;
-      persistAuth.login({ token, refresh, username, role });
+      state.firstName = firstName;
+      persistAuth.login({ token, refresh, username, role, firstName });
     }
   }
 });
@@ -53,5 +57,7 @@ export const isLoggedIn = (state) => {
 };
 
 export const getRole = (state) => state.auth.role;
+export const getFirstName = (state) => state.auth.firstName;
+export const getUsername = (state) => state.auth.username;
 
 export default authSlice.reducer;

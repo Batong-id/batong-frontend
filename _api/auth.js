@@ -35,7 +35,6 @@ const auth = {
     if (typeof window !== 'undefined') {
       isUserExist = Boolean(localStorage.batonk);
     }
-
     return isUserExist ? JSON.parse(localStorage.batonk) : false;
   }
 };
