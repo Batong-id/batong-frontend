@@ -5,7 +5,7 @@ const styles = {
   global: {
     // styles for the `body`
     body: {
-      fontFamily: 'Lora'
+      fontFamily: '"Lato", sans-serif'
     },
     '*': {
       margin: 0,
@@ -15,7 +15,7 @@ const styles = {
 };
 
 const breakpoints = createBreakpoints({
-  sm: '376px',
+  sm: '375px',
   semiMd: '480px',
   md: '754px',
   lg: '944px',
@@ -44,6 +44,7 @@ export const colors = {
     batong: '#41321E',
     brown1: '#BF9A69',
     brown2: '#BFA27C',
+    grayBorder: '#E2E8F0',
     lightTomatoScheme: {
       100: '#FECACA',
       800: '#7F1D1D'

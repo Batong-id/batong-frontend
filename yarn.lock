@@ -1094,6 +1094,16 @@
     "prop-types" "^15.7.2"
     "tslib" "^2.1.0"
 
+"@reduxjs/toolkit@^1.6.1":
+  "integrity" "sha512-pa3nqclCJaZPAyBhruQtiRwtTjottRrVJqziVZcWzI73i6L3miLTtUyWfauwv08HWtiXLx1xGyGt+yLFfW/d0A=="
+  "resolved" "https://registry.npmjs.org/@reduxjs/toolkit/-/toolkit-1.6.1.tgz"
+  "version" "1.6.1"
+  dependencies:
+    "immer" "^9.0.1"
+    "redux" "^4.1.0"
+    "redux-thunk" "^2.3.0"
+    "reselect" "^4.0.0"
+
 "@rushstack/eslint-patch@^1.0.6":
   "integrity" "sha512-Myxw//kzromB9yWgS8qYGuGVf91oBUUJpNvy5eM50sqvmKLbKjwLxohJnkWGTeeI9v9IBMtPLxz5Gc60FIfvCA=="
   "resolved" "https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.0.6.tgz"
@@ -1729,7 +1739,7 @@
     "inherits" "^2.0.1"
     "safe-buffer" "^5.0.1"
 
-"classnames@2.2.6":
+"classnames@^2.2.6", "classnames@2.2.6":
   "integrity" "sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q=="
   "resolved" "https://registry.npmjs.org/classnames/-/classnames-2.2.6.tgz"
   "version" "2.2.6"
@@ -2936,6 +2946,11 @@
   dependencies:
     "queue" "6.0.2"
 
+"immer@^9.0.1":
+  "integrity" "sha512-G95ivKpy+EvVAnAab4fVa4YGYn24J1SpEktnJX7JJ45Bd7xqME/SCplFzYFmTbrkwZbQ4xJK1xMTUYBkN6pWsQ=="
+  "resolved" "https://registry.npmjs.org/immer/-/immer-9.0.6.tgz"
+  "version" "9.0.6"
+
 "import-fresh@^3.0.0", "import-fresh@^3.1.0", "import-fresh@^3.2.1":
   "integrity" "sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw=="
   "resolved" "https://registry.npmjs.org/import-fresh/-/import-fresh-3.3.0.tgz"
@@ -3978,7 +3993,7 @@
   "resolved" "https://registry.npmjs.org/progress/-/progress-2.0.3.tgz"
   "version" "2.0.3"
 
-"prop-types@^15.6.2", "prop-types@^15.7.2":
+"prop-types@^15.5.4", "prop-types@^15.6.2", "prop-types@^15.7.2":
   "integrity" "sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   "version" "15.7.2"
@@ -4073,7 +4088,7 @@
   dependencies:
     "@babel/runtime" "^7.12.13"
 
-"react-dom@^16.8.0 || 17.x", "react-dom@^17.0.2", "react-dom@>= 16.8.0", "react-dom@>=16.8 || ^17.0.0", "react-dom@>=16.8.6", "react-dom@17.0.2":
+"react-dom@^15.0.0 || ^16.0.0", "react-dom@^16.8.0 || 17.x", "react-dom@^17.0.2", "react-dom@>= 16.8.0", "react-dom@>=16.8 || ^17.0.0", "react-dom@>=16.8.6", "react-dom@15 - 17", "react-dom@17.0.2":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -4081,6 +4096,16 @@
     "loose-envify" "^1.1.0"
     "object-assign" "^4.1.1"
     "scheduler" "^0.20.2"
+
+"react-elastic-carousel@^0.11.5":
+  "integrity" "sha512-//k1IWUiUNXXNE8LHw4bLdP+8YCXLQHbeSOPiZo/+sTkUBp/YB/hjGKWH4RqSJ59AjF8PoxB+SUbqhdPTcwAuw=="
+  "resolved" "https://registry.npmjs.org/react-elastic-carousel/-/react-elastic-carousel-0.11.5.tgz"
+  "version" "0.11.5"
+  dependencies:
+    "classnames" "^2.2.6"
+    "react-only-when" "^1.0.2"
+    "react-swipeable" "^5.5.1"
+    "resize-observer-polyfill" "1.5.0"
 
 "react-fast-compare@3.2.0":
   "integrity" "sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA=="
@@ -4098,6 +4123,11 @@
     "react-clientside-effect" "^1.2.2"
     "use-callback-ref" "^1.2.1"
     "use-sidecar" "^1.0.1"
+
+"react-hook-form@^7.15.4":
+  "integrity" "sha512-jEtsDBPfpkz1uuJVlTLDOg+jO3cG9pFHT3g5uayVvlNT551IetXE1iwrSaxUR/QPWyJA2FLx4Q/VjO2viZNfLg=="
+  "resolved" "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.15.4.tgz"
+  "version" "7.15.4"
 
 "react-icons@^4.2.0":
   "integrity" "sha512-rmzEDFt+AVXRzD7zDE21gcxyBizD/3NqjbX6cmViAgdqfJ2UiLer8927/QhhrXQV7dEj/1EGuOTPp7JnLYVJKQ=="
@@ -4124,7 +4154,12 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   "version" "17.0.2"
 
-"react-redux@*", "react-redux@^7.2.4":
+"react-only-when@^1.0.2":
+  "integrity" "sha512-agE6l3L6bqaVuwNtjihTQ36M+VBfPS63KOzcNL4ZTmlwSxQPvhzIqmBWfiol0/wLYmKxCcBqgXkEJpvj5Kob8Q=="
+  "resolved" "https://registry.npmjs.org/react-only-when/-/react-only-when-1.0.2.tgz"
+  "version" "1.0.2"
+
+"react-redux@*", "react-redux@^7.2.1", "react-redux@^7.2.4":
   "integrity" "sha512-hOQ5eOSkEJEXdpIKbnRyl04LhaWabkDPV+Ix97wqQX3T3d2NQ8DUblNXXtNMavc7DpswyQM6xfaN4HQDKNY2JA=="
   "resolved" "https://registry.npmjs.org/react-redux/-/react-redux-7.2.4.tgz"
   "version" "7.2.4"
@@ -4169,7 +4204,14 @@
     "invariant" "^2.2.4"
     "tslib" "^1.0.0"
 
-"react@*", "react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || 17.x", "react@^16.8.3 || ^17", "react@^17.0.2", "react@>= 16.8.0", "react@>= 16.8.0 || 17.x.x || 18.x.x", "react@>=16.8 || ^17.0.0", "react@>=16.8.0", "react@>=16.8.6", "react@17.0.2":
+"react-swipeable@^5.5.1":
+  "integrity" "sha512-EQObuU3Qg3JdX3WxOn5reZvOSCpU4fwpUAs+NlXSN3y+qtsO2r8VGkVnOQzmByt3BSYj9EWYdUOUfi7vaMdZZw=="
+  "resolved" "https://registry.npmjs.org/react-swipeable/-/react-swipeable-5.5.1.tgz"
+  "version" "5.5.1"
+  dependencies:
+    "prop-types" "^15.6.2"
+
+"react@*", "react@^15.0.0 || ^16.0.0", "react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^16.0.0-0", "react@^16.14.0 || ^17.0.0", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || 17.x", "react@^16.8.3 || ^17", "react@^17.0.2", "react@>= 16.8.0", "react@>= 16.8.0 || 17.x.x || 18.x.x", "react@>=16.8 || ^17.0.0", "react@>=16.8.0", "react@>=16.8.6", "react@15 - 17", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
@@ -4247,7 +4289,7 @@
   "resolved" "https://registry.npmjs.org/redux-thunk/-/redux-thunk-2.3.0.tgz"
   "version" "2.3.0"
 
-"redux@^4.0.0", "redux@^4.1.1":
+"redux@^4.0.0", "redux@^4.1.0", "redux@^4.1.1":
   "integrity" "sha512-hZQZdDEM25UY2P493kPYuKqviVwZ58lEmGQNeQ+gXa+U0gYPUBf7NKYazbe3m+bs/DzM/ahN12DbF+NG8i0CWw=="
   "resolved" "https://registry.npmjs.org/redux/-/redux-4.1.1.tgz"
   "version" "4.1.1"
@@ -4281,6 +4323,16 @@
   "integrity" "sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw=="
   "resolved" "https://registry.npmjs.org/require-from-string/-/require-from-string-2.0.2.tgz"
   "version" "2.0.2"
+
+"reselect@^4.0.0":
+  "integrity" "sha512-qUgANli03jjAyGlnbYVAV5vvnOmJnODyABz51RdBN7M4WaVu8mecZWgyQNkG8Yqe3KRGRt0l4K4B3XVEULC4CA=="
+  "resolved" "https://registry.npmjs.org/reselect/-/reselect-4.0.0.tgz"
+  "version" "4.0.0"
+
+"resize-observer-polyfill@1.5.0":
+  "integrity" "sha512-M2AelyJDVR/oLnToJLtuDJRBBWUGUvvGigj1411hXhAdyFWqMaqHp7TixW3FpiLuVaikIcR1QL+zqoJoZlOgpg=="
+  "resolved" "https://registry.npmjs.org/resize-observer-polyfill/-/resize-observer-polyfill-1.5.0.tgz"
+  "version" "1.5.0"
 
 "resolve-from@^4.0.0":
   "integrity" "sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g=="
@@ -4709,7 +4761,7 @@
     "hey-listen" "^1.0.8"
     "tslib" "^2.1.0"
 
-"styled-components@^5.3.1", "styled-components@>= 2":
+"styled-components@^5.1.0", "styled-components@^5.3.1", "styled-components@>= 2":
   "integrity" "sha512-JThv2JRzyH0NOIURrk9iskdxMSAAtCfj/b2Sf1WJaCUsloQkblepy1jaCLX/bYE+mhYo3unmwVSI9I5d9ncSiQ=="
   "resolved" "https://registry.npmjs.org/styled-components/-/styled-components-5.3.1.tgz"
   "version" "5.3.1"
