@@ -12,7 +12,7 @@ export const user = '/user/';
 
 //store
 export const allStore = '/store/';
-export const ownStore = '/store/mystore/';
+export const getOwnStore = '/store/mystore/';
 export const addStore = '/store/create/';
 export const updateStore = (storeId) => `/store/update/${storeId}`;
 export const getStoreBySlug = (storeSlug) => `/store/slug/${storeSlug}`;

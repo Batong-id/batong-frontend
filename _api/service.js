@@ -1,10 +1,16 @@
 import axios from 'axios';
 
 import {
+  addStore,
+  allStore,
+  deleteStore,
   forgotPassword,
+  getOwnStore,
+  getStoreBySlug,
   login,
   regist,
   resetPassword,
+  updateStore,
   user
 } from './endpoints';
 
@@ -56,6 +62,57 @@ export const authApi = {
   resetPassword: async (requestBody) => {
     try {
       const response = await axios.put(resetPassword(), requestBody);
+      return await response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+};
+
+export const storeApi = {
+  addStore: async (requestBody) => {
+    try {
+      const response = await axios.post(addStore, requestBody);
+      return await response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  getAllStore: async () => {
+    try {
+      const response = await axios.get(allStore);
+      return await response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  getOwnStore: async () => {
+    try {
+      const response = await axios.get(getOwnStore);
+      return await response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  getStoreBySlug: async (storeSlug) => {
+    try {
+      const response = await axios.get(getStoreBySlug(storeSlug));
+      return await response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  updateStore: async (storeId) => {
+    try {
+      const response = await axios.put(updateStore(storeId));
+      return await response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  deleteStore: async (storeId) => {
+    try {
+      const response = await axios.put(deleteStore(storeId));
       return await response.data;
     } catch (error) {
       throw new Error(error);
