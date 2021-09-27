@@ -2,11 +2,11 @@ import { Button } from '@chakra-ui/button';
 import { Box, Grid, GridItem, Text } from '@chakra-ui/layout';
 
 import Card from '../../Card';
-import { OrderCard, ProfileCard } from '../../Card/ProfileCard';
+import { OrderCard, SellerProfileCard } from '../../Card/ProfileCard';
 // import { useState } from 'react';
 import ProfilTitle from '../../Title/ProfileTitle';
 
-const Profile = () => {
+const Store = () => {
   const NAV_ITEMS = [
     { label: 'Semua', href: '#' },
     { label: 'Belum Dibayar', href: '#' },
@@ -33,7 +33,10 @@ const Profile = () => {
           h={{ lg: '340px' }}
           w={{ lg: '280px' }}
         >
-          <ProfileCard imgSrc="/images/logo-batong.png" name="Batong.id" />
+          <SellerProfileCard
+            imgSrc="/images/logo-batong.png"
+            name="Batong.id"
+          />
         </GridItem>
         <GridItem colSpan={4}>
           <ProfilTitle>Pesananmu</ProfilTitle>
@@ -96,4 +99,4 @@ const Profile = () => {
     </Box>
   );
 };
-export default Profile;
+export default Store;

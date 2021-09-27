@@ -25,7 +25,7 @@ const authSlice = createSlice({
       persistAuth.logout();
     },
     loginUser: (state, action) => {
-      const { token, username, refresh, role } = action.payload;
+      const { token, username, refresh, role, firstName } = action.payload;
       state.token = token;
       state.refresh = refresh;
       state.username = username;
@@ -36,7 +36,7 @@ const authSlice = createSlice({
   },
   extraReducers: {
     [login.fulfilled]: (state, action) => {
-      const { token, username, refresh, role } = action.payload.data;
+      const { token, username, refresh, role, firstName } = action.payload.data;
       state.token = token;
       state.refresh = refresh;
       state.username = username;
@@ -48,7 +48,6 @@ const authSlice = createSlice({
 });
 
 export const { logout, loginUser } = authSlice.actions;
-
 export const isLoggedIn = (state) => {
   if (state.auth.token) {
     return true;

@@ -51,16 +51,10 @@ const Navbar = ({ loggedIn, isSeller, firstName }) => {
     router.push('/');
   };
 
-  const onLogin = () => {
-    router.push('/authentication/login');
-  };
-  const Home = () => {
-    router.push('/');
-  };
-
-  const onProfile = () => {
-    router.push('/profile');
-  };
+  const onLogin = () => router.push('/authentication/login');
+  const Home = () => router.push('/');
+  const onProfile = () => router.push('/profile');
+  const onStore = () => router.push('/store');
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -113,73 +107,83 @@ const Navbar = ({ loggedIn, isSeller, firstName }) => {
             ))}
           </HStack>
           <Flex alignItems={'center'}>
-            <Menu>
-              {isSeller ? (
-                <Image src="images/icon-shopping-cart.svg" mr="10px" />
-              ) : (
-                ''
-              )}
-              <MenuButton
-                as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
-                minW={0}
-                _hover={{
-                  textDecoration: 'none',
-                  bg: 'gray.200'
-                }}
-              >
-                <Flex
-                  flexDir="row"
-                  justifyContent="space-around"
-                  alignItems="center"
-                  bgColor="white"
-                  boxShadow="0px 4px 5px rgba(190, 190, 190, 0.25)"
-                  borderRadius="60px"
-                  w="162px"
-                  h="54px"
+            {loggedIn && !isSeller ? (
+              <Image src="images/icon-shopping-cart.svg" mr="10px" />
+            ) : (
+              ''
+            )}
+            {loggedIn ? (
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  rounded={'full'}
+                  variant={'link'}
+                  cursor={'pointer'}
+                  minW={0}
+                  _hover={{
+                    textDecoration: 'none',
+                    bg: 'gray.200'
+                  }}
                 >
-                  <Image
-                    src="images/logo-batong.png"
-                    rounded={'full'}
-                    w="43px"
-                    h="43px"
-                    ml="10px"
-                  />
-                  {loggedIn ? (
+                  <Flex
+                    flexDir="row"
+                    justifyContent="space-around"
+                    alignItems="center"
+                    bgColor="white"
+                    boxShadow="0px 4px 5px rgba(190, 190, 190, 0.25)"
+                    borderRadius="60px"
+                    w="162px"
+                    h="54px"
+                  >
+                    <Image
+                      src="images/logo-batong.png"
+                      rounded={'full'}
+                      w="43px"
+                      h="43px"
+                      ml="10px"
+                    />
+
                     <>
                       <Text fontSize="18px" fontWeight="bold" fontFamily="Lato">
                         {firstName}
                       </Text>
                       <ChevronDownIcon mr="8px" w={8} h={8} />
                     </>
-                  ) : (
-                    <>
-                      <Link
-                        to={onLogin}
-                        py="0.5rem"
-                        px="0.75rem"
-                        fontFamily="Lato"
-                      >
-                        LOGIN
-                      </Link>
-                    </>
-                  )}
-                </Flex>
-              </MenuButton>
-              <MenuList>
-                <MenuItem as="button" onClick={onProfile}>
-                  <Text>Akun Saya</Text>
-                </MenuItem>
-                <MenuItem>
-                  <Text>Pesanan Saya</Text>
-                </MenuItem>
-                <MenuItem as="button" onClick={onLogout}>
-                  <Text>Logout</Text>
-                </MenuItem>
-              </MenuList>
-            </Menu>
+                  </Flex>
+                </MenuButton>
+                <MenuList>
+                  <MenuItem
+                    as="button"
+                    onClick={isSeller ? onStore : onProfile}
+                  >
+                    <Text>Akun Saya</Text>
+                  </MenuItem>
+                  <MenuItem>
+                    <Text>Pesanan Saya</Text>
+                  </MenuItem>
+                  <MenuItem as="button" onClick={onLogout}>
+                    <Text>Logout</Text>
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            ) : (
+              <>
+                <Link
+                  as="button"
+                  _hover={{
+                    textDecoration: 'none',
+                    bg: 'gray.200',
+                    borderRadius: '40px'
+                  }}
+                  onClick={onLogin}
+                  py="0.5rem"
+                  px="0.75rem"
+                  fontFamily="Lato"
+                >
+                  LOGIN
+                </Link>
+              </>
+            )}
           </Flex>
           {isOpen ? (
             <Box pb={4} display={{ md: 'none' }}>
