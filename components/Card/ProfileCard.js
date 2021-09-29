@@ -37,10 +37,18 @@ export const ProfileCard = ({ name, imgSrc, ...properties }) => {
   );
 };
 
-export const SellerProfileCard = ({ name, imgSrc, ...properties }) => {
+export const SellerProfileCard = ({
+  storeId,
+  name,
+  imgSrc,
+  isStoreExist,
+  ...properties
+}) => {
   const router = useRouter();
   const onEditProfile = () => router.push('/profile/edit');
-  const onEditStore = () => router.push('/store/edit');
+  const onEditStore = () => router.push(`/store/edit/${storeId}`);
+  const onCreateStore = () => router.push('/store/create');
+
   return (
     <Card
       display="flex"
@@ -58,8 +66,12 @@ export const SellerProfileCard = ({ name, imgSrc, ...properties }) => {
       <AlternateButton mt={{ lg: '20px' }} w="240px" onClick={onEditProfile}>
         Edit Profil
       </AlternateButton>
-      <PrimaryButton mt={{ lg: '20px' }} w="240px" onClick={onEditStore}>
-        Edit Toko
+      <PrimaryButton
+        mt={{ lg: '20px' }}
+        w="240px"
+        onClick={isStoreExist ? onEditStore : onCreateStore}
+      >
+        {isStoreExist ? 'Edit Toko' : 'Tambahkan Toko'}
       </PrimaryButton>
     </Card>
   );

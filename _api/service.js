@@ -91,7 +91,11 @@ export const storeApi = {
       const response = await axios.get(getOwnStore);
       return await response.data;
     } catch (error) {
-      throw new Error(error);
+      if (error.message === 'Request failed with status code 404') {
+        return;
+      } else {
+        throw new Error(error);
+      }
     }
   },
   getStoreBySlug: async (storeSlug) => {
@@ -102,9 +106,9 @@ export const storeApi = {
       throw new Error(error);
     }
   },
-  updateStore: async (storeId) => {
+  updateStore: async (storeId, values) => {
     try {
-      const response = await axios.put(updateStore(storeId));
+      const response = await axios.put(updateStore(storeId), values);
       return await response.data;
     } catch (error) {
       throw new Error(error);

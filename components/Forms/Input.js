@@ -10,10 +10,12 @@ const FilledInput = ({
   return (
     <Input
       {...properties}
-      borderColor="primary.grayBorder"
-      borderRadius="10px"
+      borderColor="#EBF0F5"
+      borderRadius="6px"
+      borderWidth="0.1rem"
       bg="white"
-      _focus={{ bg: 'primary.gray50', borderColor: 'primary.brown1' }}
+      _focus={{ bg: 'none', borderColor: 'primary.brown1' }}
+      _hover={{ bg: 'none', borderColor: 'primary.brown1' }}
       variant="filled"
       id={name}
       placeholder={placeholder}

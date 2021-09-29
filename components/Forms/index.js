@@ -47,6 +47,30 @@ export const InputText = ({
   );
 };
 
+export const NoLabelInput = ({
+  name,
+  register,
+  validator,
+  placeholder,
+  errors,
+  ...properties
+}) => {
+  validator = { ...validator, strPattern: stringPattern };
+  return (
+    <FormControl {...properties} isInvalid={errors[name]}>
+      <FilledInput
+        name={name}
+        placeholder={placeholder}
+        validator={validator}
+        register={register}
+      />
+      <FormErrorMessage fontWeight="medium" fontSize="sm">
+        {errors[name] && errors[name].message}
+      </FormErrorMessage>
+    </FormControl>
+  );
+};
+
 export const InputTextarea = ({
   name,
   register,
@@ -73,6 +97,32 @@ export const InputTextarea = ({
         placeholder={placeholder}
         validator={validator}
         register={register}
+      />
+      <FormErrorMessage fontWeight="medium" fontSize="sm">
+        {errors[name] && errors[name].message}
+      </FormErrorMessage>
+    </FormControl>
+  );
+};
+
+export const NoLabelTextArea = ({
+  name,
+  register,
+  validator,
+  placeholder,
+  errors,
+  height,
+  ...properties
+}) => {
+  validator = { ...validator, strPattern: stringPattern };
+  return (
+    <FormControl {...properties} isInvalid={errors[name]}>
+      <FilledTextarea
+        name={name}
+        placeholder={placeholder}
+        validator={validator}
+        register={register}
+        h={height}
       />
       <FormErrorMessage fontWeight="medium" fontSize="sm">
         {errors[name] && errors[name].message}
