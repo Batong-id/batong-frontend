@@ -1,6 +1,8 @@
 import { Select } from '@chakra-ui/react';
 
-const InputSelect = ({
+const COLOR = 'primary.brown1';
+
+export const RegisterInputSelect = ({
   name,
   register,
   placeholder,
@@ -10,10 +12,10 @@ const InputSelect = ({
   return (
     <Select
       {...properties}
-      borderColor="primary.grayBorder"
+      borderColor={COLOR}
       bg="white"
-      color="primary.brown1"
-      _focus={{ bg: 'primary.gray50', borderColor: 'primary.brown1' }}
+      color={COLOR}
+      _focus={{ borderColor: { COLOR } }}
       variant="filled"
       id={name}
       placeholder={placeholder}
@@ -25,4 +27,30 @@ const InputSelect = ({
   );
 };
 
-export default InputSelect;
+export const ProductInputSelect = ({
+  name,
+  register,
+  placeholder,
+  validator,
+  ...properties
+}) => {
+  return (
+    <Select
+      {...properties}
+      borderColor="primary.grayBorder"
+      borderRadius="6px"
+      borderWidth="0.1rem"
+      _focus={{ bg: 'none', borderColor: { COLOR } }}
+      _hover={{ bg: 'none', borderColor: { COLOR } }}
+      bg="white"
+      color="neutral.grey"
+      variant="filled"
+      id={name}
+      placeholder={placeholder}
+      {...register(name, validator)}
+    >
+      <option value="user">Kain</option>
+      <option value="seller">Baju</option>
+    </Select>
+  );
+};

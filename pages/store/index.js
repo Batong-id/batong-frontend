@@ -1,5 +1,5 @@
 import Store from '../../components/Container/Store';
 
-export default function ProfilePage() {
+export default function StorePage() {
   return <Store />;
 }

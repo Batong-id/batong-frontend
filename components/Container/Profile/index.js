@@ -4,7 +4,7 @@ import { Box, Grid, GridItem, Text } from '@chakra-ui/layout';
 import Card from '../../Card';
 import { OrderCard, ProfileCard } from '../../Card/ProfileCard';
 // import { useState } from 'react';
-import ProfilTitle from '../../Title/ProfileTitle';
+import { SectionTitle } from '../../Title';
 
 const Profile = () => {
   const NAV_ITEMS = [
@@ -36,7 +36,7 @@ const Profile = () => {
           <ProfileCard imgSrc="/images/logo-batong.png" name="Batong.id" />
         </GridItem>
         <GridItem colSpan={4}>
-          <ProfilTitle>Pesananmu</ProfilTitle>
+          <SectionTitle ml="0px">Pesananmu</SectionTitle>
         </GridItem>
         <GridItem colSpan={4}>
           <Card
