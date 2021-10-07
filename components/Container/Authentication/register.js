@@ -9,7 +9,7 @@ import { authApi } from '../../../_api/service';
 import { InputPassword, InputText } from '../../../components/Forms';
 import { REGEX_EMAIL } from '../../../constants/regex';
 import { PrimaryButton } from '../../Buttons';
-import InputSelect from '../../Forms/Select';
+import { RegisterInputSelect } from '../../Forms/Select';
 import { ErrorToast, SuccessToast } from '../../Toast';
 
 const Register = () => {
@@ -170,7 +170,7 @@ const Register = () => {
             }}
           />
 
-          <InputSelect
+          <RegisterInputSelect
             mb="2rem"
             label="Daftar sebagai"
             name="role"

@@ -11,7 +11,7 @@ import { storeApi, userApi } from '../../../_api/service';
 import { NoLabelInput, NoLabelTextArea } from '../../../components/Forms';
 import { PrimaryButton } from '../../Buttons';
 import Card from '../../Card';
-import ProfileTitle from '../../Title/ProfileTitle';
+import { SectionTitle } from '../../Title';
 import { ErrorToast, SuccessToast } from '../../Toast';
 
 function onSubmit(values) {
@@ -61,8 +61,8 @@ const CreateStore = () => {
           w={{ lg: '90vw' }}
           h={{ lg: '600px' }}
         >
-          <Box ml={{ lg: '50px' }}>
-            <ProfileTitle>Edit Profile</ProfileTitle>
+          <Box>
+            <SectionTitle>Edit Profile</SectionTitle>
           </Box>
           <HStack ml={{ lg: '80px' }} mt="-100px" spacing="100px">
             <Grid

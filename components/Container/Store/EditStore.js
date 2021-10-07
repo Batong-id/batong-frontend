@@ -11,7 +11,7 @@ import { storeApi } from '../../../_api/service';
 import { NoLabelInput, NoLabelTextArea } from '../../../components/Forms';
 import { PrimaryButton } from '../../Buttons';
 import Card from '../../Card';
-import ProfileTitle from '../../Title/ProfileTitle';
+import { SectionTitle } from '../../Title';
 import { ErrorToast, SuccessToast } from '../../Toast';
 
 const EditStore = ({ storeId }) => {
@@ -58,8 +58,8 @@ const EditStore = ({ storeId }) => {
           w={{ lg: '90vw' }}
           h={{ lg: '600px' }}
         >
-          <Box ml={{ lg: '50px' }}>
-            <ProfileTitle>Edit Toko</ProfileTitle>
+          <Box>
+            <SectionTitle>Edit Toko</SectionTitle>
           </Box>
           <HStack ml={{ lg: '80px' }} mt="-100px" spacing="100px">
             <Grid

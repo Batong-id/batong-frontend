@@ -1,12 +1,15 @@
 import { Button } from '@chakra-ui/button';
 import { Box, Grid, GridItem, Text } from '@chakra-ui/layout';
+import { Flex } from '@chakra-ui/layout';
 import { Skeleton } from '@chakra-ui/skeleton';
+import { useRouter } from 'next/dist/client/router';
 import { useEffect, useState } from 'react';
 
 import { storeApi } from '../../../_api/service';
+import { AlternateButton } from '../../Buttons';
 import Card from '../../Card';
 import { OrderCard, SellerProfileCard } from '../../Card/ProfileCard';
-import ProfilTitle from '../../Title/ProfileTitle';
+import { SectionTitle } from '../../Title';
 
 const Store = () => {
   const NAV_ITEMS = [
@@ -19,6 +22,9 @@ const Store = () => {
   const [dataStore, setDataStore] = useState();
   const [isStoreExist, setIsStoreExist] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const router = useRouter();
+  const onAddProduct = () => router.push('/product/add');
+
   useEffect(() => {
     storeApi.getOwnStore()?.then((data) => {
       if (data) {
@@ -54,7 +60,17 @@ const Store = () => {
             />
           </GridItem>
           <GridItem colSpan={4}>
-            <ProfilTitle>Pesananmu</ProfilTitle>
+            <Flex
+              flexDir="row"
+              justifyContent="space-between"
+              alignItems="center"
+              maxW={{ lg: '930px' }}
+            >
+              <SectionTitle ml="0px">Pesananmu</SectionTitle>
+              <AlternateButton onClick={onAddProduct}>
+                Tambahkan Produk
+              </AlternateButton>
+            </Flex>
           </GridItem>
           <GridItem colSpan={4}>
             <Card
