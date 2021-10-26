@@ -133,9 +133,9 @@ export const storeApi = {
 };
 
 export const productApi = {
-  addProduct: async (requestBody) => {
+  addProduct: async (formData) => {
     try {
-      const response = await axios.post(addProduct, requestBody);
+      const response = await axios.post(addProduct, formData);
       return await response.data;
     } catch (error) {
       throw new Error(error);

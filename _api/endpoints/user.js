@@ -8,4 +8,3 @@ export const regist = '/auth/register/';
 export const forgotPassword = '/auth/forgotPassword/';
 export const resetPassword = (token) => `/auth/resetPassword/${token}`;
 export const user = '/user/';
-// export const urlRefreshToken = '/auth/token/refresh/';

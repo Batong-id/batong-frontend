@@ -23,31 +23,28 @@ const Login = () => {
   const dispatch = useDispatch();
   const [falsePwd, setFalsePwd] = useState();
 
-  function onSubmit(values) {
-    return new Promise((resolve) => {
-      try {
-        const authDetail = authApi.login(values);
-        dispatch(loginUser(authDetail));
-        SuccessToast(
-          `Hi, ${authDetail.firstName} 👋`,
-          `Masuk sebagai ${authDetail.role}`
-        );
-        setTimeout(() => {
-          redirect('/');
-        }, 2000);
-      } catch (error) {
-        setFalsePwd(
-          error.message === 'Network Error'
-            ? 'Jaringan Bermasalah'
-            : 'Username/Password Salah 😟'
-        );
-        setTimeout(() => {
-          setFalsePwd();
-        }, 2000);
-        ErrorToast('Gagal Login');
-      }
-      resolve();
-    });
+  async function onSubmit(values) {
+    try {
+      const authDetail = await authApi.login(values);
+      dispatch(loginUser(authDetail));
+      SuccessToast(
+        `Hi, ${authDetail.firstName} 👋`,
+        `Masuk sebagai ${authDetail.role}`
+      );
+      setTimeout(() => {
+        redirect('/');
+      }, 2000);
+    } catch (error) {
+      setFalsePwd(
+        error.message === 'Network Error'
+          ? 'Jaringan Bermasalah'
+          : 'Username/Password Salah 😟'
+      );
+      setTimeout(() => {
+        setFalsePwd();
+      }, 2000);
+      ErrorToast('Gagal Login');
+    }
   }
 
   return (
