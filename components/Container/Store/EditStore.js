@@ -31,19 +31,16 @@ const EditStore = ({ storeId }) => {
     });
   }, '');
 
-  function onSubmit(values) {
-    return new Promise((resolve) => {
-      try {
-        const data = storeApi.updateStore(storeId, values);
-        SuccessToast(`Berhasil memperbarui ${data.store.storeName}`);
-        setTimeout(() => {}, 2000);
-      } catch (error) {
-        if (error.message.includes('400')) {
-          ErrorToast(`Nama toko sudah terpakai 😟`);
-        }
+  async function onSubmit(values) {
+    try {
+      const data = await storeApi.updateStore(storeId, values);
+      SuccessToast(`Berhasil memperbarui ${data.store.storeName}`);
+      setTimeout(() => {}, 2000);
+    } catch (error) {
+      if (error.message.includes('400')) {
+        ErrorToast(`Nama toko sudah terpakai 😟`);
       }
-      resolve();
-    });
+    }
   }
 
   return (
