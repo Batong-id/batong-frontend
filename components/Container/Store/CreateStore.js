@@ -14,21 +14,18 @@ import Card from '../../Card';
 import { SectionTitle } from '../../Title';
 import { ErrorToast, SuccessToast } from '../../Toast';
 
-function onSubmit(values) {
-  return new Promise((resolve) => {
-    try {
-      const data = storeApi.addStore(values);
-      SuccessToast(`Berhasil membuat ${data.store.storeName}`);
-      setTimeout(() => {
-        // router.push('/authentication/login');
-      }, 2000);
-    } catch (error) {
-      if (error.message.includes('400')) {
-        ErrorToast(`Nama toko sudah terpakai 😟`);
-      }
+async function onSubmit(values) {
+  try {
+    const data = await storeApi.addStore(values);
+    SuccessToast(`Berhasil membuat ${data.store.storeName}`);
+    setTimeout(() => {
+      // router.push('/authentication/login');
+    }, 2000);
+  } catch (error) {
+    if (error.message.includes('400')) {
+      ErrorToast(`Nama toko sudah terpakai 😟`);
     }
-    resolve();
-  });
+  }
 }
 const CreateStore = () => {
   // const router = useRouter();

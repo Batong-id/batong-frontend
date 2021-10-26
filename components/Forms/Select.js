@@ -49,8 +49,8 @@ export const ProductInputSelect = ({
       placeholder={placeholder}
       {...register(name, validator)}
     >
-      <option value="user">Kain</option>
-      <option value="seller">Baju</option>
+      <option value="Kain">Kain</option>
+      <option value="Baju">Baju</option>
     </Select>
   );
 };

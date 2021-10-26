@@ -14,8 +14,7 @@ const Profile = () => {
     { label: 'Selesai', href: '#' },
     { label: 'Batal', href: '#' }
   ];
-  // const [state, setState] = useState('')
-  // const [isLoaded, setLoaded] = useState(false);
+
   return (
     <Box w="100vw" h="100vh">
       <Grid

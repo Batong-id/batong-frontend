@@ -1,18 +1,26 @@
 import axios from 'axios';
 
 import {
+  addProduct,
+  deleteProductById,
+  product,
+  productByCategory,
+  productById,
+  productBySlug,
+  updateProductById
+} from './endpoints/product';
+import {
   addStore,
   allStore,
   deleteStore,
   forgotPassword,
   getOwnStore,
   getStoreBySlug,
-  login,
-  regist,
-  resetPassword,
-  updateStore,
-  user
-} from './endpoints';
+  updateStore
+} from './endpoints/store';
+import { login, regist, resetPassword, user } from './endpoints/user';
+
+const ERROR_MSG = 'Request failed with status code 404';
 
 export const userApi = {
   getUser: async () => {
@@ -91,7 +99,7 @@ export const storeApi = {
       const response = await axios.get(getOwnStore);
       return await response.data;
     } catch (error) {
-      if (error.message === 'Request failed with status code 404') {
+      if (error.message === { ERROR_MSG }) {
         return;
       } else {
         throw new Error(error);
@@ -117,6 +125,81 @@ export const storeApi = {
   deleteStore: async (storeId) => {
     try {
       const response = await axios.put(deleteStore(storeId));
+      return await response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+};
+
+export const productApi = {
+  addProduct: async (formData) => {
+    try {
+      const response = await axios.post(addProduct, formData, {
+        headers: {
+          'content-type': 'multipart/form-data'
+        }
+      });
+      return await response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  getAllProduct: async () => {
+    try {
+      const response = await axios.get(product);
+      return await response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  getProductById: async (productId) => {
+    try {
+      const response = await axios.get(productById(productId));
+      return await response.data;
+    } catch (error) {
+      if (error.message === { ERROR_MSG }) {
+        return;
+      } else {
+        throw new Error(error);
+      }
+    }
+  },
+  getProductBySlug: async (productSlug) => {
+    try {
+      const response = await axios.get(productBySlug(productSlug));
+      return await response.data;
+    } catch (error) {
+      if (error.message === { ERROR_MSG }) {
+        return;
+      } else {
+        throw new Error(error);
+      }
+    }
+  },
+  getProductByCategory: async (productCategory) => {
+    try {
+      const response = await axios.get(productByCategory(productCategory));
+      return await response.data;
+    } catch (error) {
+      if (error.message === { ERROR_MSG }) {
+        return;
+      } else {
+        throw new Error(error);
+      }
+    }
+  },
+  deleteProductById: async (productId) => {
+    try {
+      const response = await axios.delete(deleteProductById(productId));
+      return await response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  updateProductById: async (productId, values) => {
+    try {
+      const response = await axios.put(updateProductById(productId), values);
       return await response.data;
     } catch (error) {
       throw new Error(error);

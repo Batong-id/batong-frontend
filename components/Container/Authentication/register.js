@@ -20,24 +20,21 @@ const Register = () => {
   } = useForm();
   const router = useRouter();
 
-  function onSubmit(values) {
-    return new Promise((resolve) => {
-      try {
-        const data = authApi.register(values);
-        SuccessToast(
-          `Hai, ${data.firstName} 👋`,
-          `Terdaftar sebagai ${data.role}`
-        );
-        setTimeout(() => {
-          router.push('/authentication/login');
-        }, 2000);
-      } catch (error) {
-        if (error.message.includes('400')) {
-          ErrorToast(`email sudah terpakai 😟`);
-        }
+  async function onSubmit(values) {
+    try {
+      const data = await authApi.register(values);
+      SuccessToast(
+        `Hai, ${data.firstName} 👋`,
+        `Terdaftar sebagai ${data.role}`
+      );
+      setTimeout(() => {
+        router.push('/authentication/login');
+      }, 2000);
+    } catch (error) {
+      if (error.message.includes('400')) {
+        ErrorToast(`email sudah terpakai 😟`);
       }
-      resolve();
-    });
+    }
   }
 
   return (

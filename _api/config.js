@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import auth from './auth';
-import { urlRefreshToken } from './endpoints';
 
 let url;
 
@@ -51,32 +50,6 @@ axios.interceptors.response.use(
       typeof window !== 'undefined'
     ) {
       originalRequest._retry = true;
-      const { name, role, refresh } = JSON.parse(
-        localStorage.getItem('batonk')
-      );
-      const refreshToken = refresh;
-
-      try {
-        const response = await axios.post(urlRefreshToken, {
-          refresh: refreshToken
-        });
-        const storageData = {
-          name: name,
-          role: role,
-          token: response.data.access,
-          refresh: response.data.refresh
-        };
-
-        localStorage.setItem('batonk', JSON.stringify(storageData));
-
-        axios.defaults.headers['Authorization'] =
-          'Bearer ' + response.data.access;
-        originalRequest.headers['Authorization'] =
-          'Bearer ' + response.data.access;
-        return await axios(originalRequest);
-      } catch {
-        return Promise.reject(error);
-      }
     }
 
     // specific error handling done elsewhere
