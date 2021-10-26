@@ -135,7 +135,11 @@ export const storeApi = {
 export const productApi = {
   addProduct: async (formData) => {
     try {
-      const response = await axios.post(addProduct, formData);
+      const response = await axios.post(addProduct, formData, {
+        headers: {
+          'content-type': 'multipart/form-data'
+        }
+      });
       return await response.data;
     } catch (error) {
       throw new Error(error);

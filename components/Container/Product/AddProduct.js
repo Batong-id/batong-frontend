@@ -12,16 +12,6 @@ import { ErrorToast, SuccessToast } from '../../Toast';
 import { HargaProduk, InformasiProduk } from './AddProductComponent';
 
 const AddProduct = () => {
-  // const {
-  //   handleSubmit,
-  //   register,
-  //   formState: { errors, isSubmitting }
-  // } = useForm();
-
-  // const [isLoading, setIsLoading] = useState(false)
-  // const [error, setError] = useState(null)
-  // const [message, setMessage] = useState(null)
-
   const IMAGE_DESC = [
     { id: 0, label: 'Foto Utama' },
     { id: 1, label: 'Foto 1' },
@@ -29,15 +19,6 @@ const AddProduct = () => {
     { id: 3, label: 'Foto 3' },
     { id: 4, label: 'Foto 4' }
   ];
-
-  const handleProductPictures = (event) => {
-    setFiles([...files, event.target.files[0]]);
-  };
-
-  // function getFile() {
-  //   document.getElementById("upfile").click;
-  // }
-
   const formData = new FormData();
 
   const router = useRouter();
@@ -47,30 +28,11 @@ const AddProduct = () => {
   const [desc, setDesc] = useState('');
   const [price, setPrice] = useState('');
   const [quantity, setQuantity] = useState('');
-  const [files, setFiles] = useState([]);
-  // const [dataStore, setDataStore] = useState();
-  // const [isLoaded, setIsLoaded] = useState(false);
+  const [productPictures, setProductPictures] = useState([]);
 
-  // const onDrop = useCallback((acceptedFiles) => {
-  //   const file = acceptedFiles?.[0]
-  //   console.log("file accepted", file)
-  //   if (!file) {
-  //     return
-  //   }
-  //   setIsLoading(true)
-  //   setError(null)
-  //   setMessage(null)
-  //   try {
-  //     setFiles([...files, file])
-  //   } catch (e) {
-  //     setIsLoading(false)
-  //     setError(e)
-  //     return
-  //   }
-  //   setIsLoading(false)
-  //   setMessage('File was uploaded 👍')
-  // }, [])
-  // const { getRootProps, getInputProps } = useDropzone({ onDrop })
+  const handleProductPictures = (event) => {
+    setProductPictures([...productPictures, event.target.files[0]]);
+  };
 
   async function onSubmit() {
     try {
@@ -80,17 +42,18 @@ const AddProduct = () => {
       formData.append('desc', desc);
       formData.append('quantity', quantity);
       formData.append('price', price);
-      formData.append('productsPictures', files);
+      for (let pic of productPictures) {
+        formData.append('productPictures', pic);
+      }
 
       const data = await productApi.addProduct(formData);
       SuccessToast(`Berhasil menambahkan produk ${data.product.name}`);
       setTimeout(() => {
         // router.push('/store');
       }, 2000);
-    } catch (error) {
-      if (error.message.includes('400')) {
-        ErrorToast(`Produk gagal ditambahkan 😟`);
-      }
+    } catch {
+      ErrorToast(`Produk gagal ditambahkan 😟`);
+
       setTimeout(() => {
         router.push('/product/add');
       }, 2000);
@@ -112,7 +75,12 @@ const AddProduct = () => {
           <CardTitle mt={{ lg: '60px' }} maxW={{ lg: '300px' }}>
             Unggah produk
           </CardTitle>
-          <HStack ml={{ lg: '80px' }} mt="20px" spacing="30px">
+          <HStack
+            ml={{ lg: '80px' }}
+            mt="20px"
+            spacing="30px"
+            pr={{ lg: '30px' }}
+          >
             <Flex
               flexDir="column"
               justifyContent="flex-start"
@@ -132,29 +100,11 @@ const AddProduct = () => {
             {IMAGE_DESC.map((photo) => (
               <input
                 key={photo.id}
+                name="productPictures"
                 type="file"
                 onChange={handleProductPictures}
                 id="upfile"
               />
-              // <UploadButton
-              //   key={photo.id}
-              //   boxSize={{ lg: '150px' }}
-
-              // >
-              //   <Flex flexDir="column" justifyContent="center" alignItems="center" >
-              //    <input type="file" onChange={handleProductPictures} id="upfile" />
-
-              //     {isLoading ? (
-              //       <Spinner />) : (
-              //       <>
-              //         <Image src="/images/icon-upload-photos.png" boxSize={{ lg: "48px" }} />
-              //         <Text fontSize="12px" mt="10px">{photo.label}</Text>
-              //       </>
-
-              //     )}
-
-              //   </Flex>
-              // </UploadButton>
             ))}
           </HStack>
         </Card>
